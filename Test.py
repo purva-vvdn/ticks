@@ -1,25 +1,44 @@
-def count_occurrence(str1):
-    dict1 = {}
-    for char in str1:
-        if char in dict1:
-            dict1[char] += 1
-        else:
-            dict1[char] = 1
-    return dict1
+import pytest
 
-# Input from the user
-str1 = input("Enter String: ")
+# ? PASSING TEST CASES
+@pytest.mark.low
+def test_passing_1():
+    assert 1 + 1 == 2  # ? Pass
 
-# Count occurrences of each character
-dict2 = count_occurrence(str1)
+@pytest.mark.medium
+def test_passing_2():
+    assert "pytest" in "pytest framework"  # ? Pass
 
-# Sort the dictionary by keys (characters)
-sorted_by_keys = dict(sorted(dict2.items()))
+@pytest.mark.low
+def test_passing_3():
+    assert isinstance(42, int)  # ? Pass
 
-# Sort the dictionary by values (occurrences)
-sorted_by_values = dict(sorted(dict2.items(), key=lambda item: item[1]))
+@pytest.mark.low
+def test_passing_4():
+    assert len([1, 2, 3]) == 3  # ? Pass
 
+@pytest.mark.high
+def test_passing_5():
+    assert sum([1, 2, 3, 4]) == 10  # ? Pass (high priority)
 
-print("Original Dictionary:", dict2)
-print("Sorted Dictionary by Keys:", sorted_by_keys)
-print("Sorted Dictionary by Values:", sorted_by_values)
+# ? FAILING TEST CASES
+@pytest.mark.low
+def test_failing_1():
+    assert 2 * 2 == 5  # ? Fail
+
+@pytest.mark.medium
+def test_failing_2():
+    assert "robot" in "pytest framework"  # ? Fail
+
+@pytest.mark.high
+def test_failing_3():
+    assert isinstance("text", int)  # ? Fail (high priority)
+
+@pytest.mark.high
+def test_failing_4():
+    assert 100 / 10 == 5  # ? Fail (100/10 is 10, not 5)
+
+@pytest.mark.low
+def test_failing_5():
+    assert max([1, 2, 3]) == 5  # ? Fail (max is 3, not 5)
+
