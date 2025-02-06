@@ -1,0 +1,43 @@
+import pytest
+
+# ? PASSING TEST CASES
+@pytest.mark.low
+def test_passing_1():
+    assert 3 + 2 == 5  # ? Pass
+
+@pytest.mark.medium
+def test_passing_2():
+    assert "python" in "python programming"  # ? Pass
+
+@pytest.mark.low
+def test_passing_3():
+    assert isinstance(3.14, float)  # ? Pass
+
+@pytest.mark.low
+def test_passing_4():
+    assert len("hello") == 5  # ? Pass
+
+@pytest.mark.high
+def test_passing_5():
+    assert sum([1, 2, 3, 4, 5]) == 15  # ? Pass (high priority)
+
+# ? FAILING TEST CASES
+@pytest.mark.low
+def test_failing_1():
+    assert 5 - 3 == 1  # ? Fail
+
+@pytest.mark.medium
+def test_failing_2():
+    assert "java" in "python programming"  # ? Fail
+
+@pytest.mark.high
+def test_failing_3():
+    assert isinstance(3.14, int)  # ? Fail (high priority)
+
+@pytest.mark.high
+def test_failing_4():
+    assert 50 * 2 == 100  # ? Fail (50 * 2 is 100, but let's make it fail)
+
+@pytest.mark.low
+def test_failing_5():
+    assert min([1, 2, 3]) == 2  # ? Fail (min is 1, not 2)
